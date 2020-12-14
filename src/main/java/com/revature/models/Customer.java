@@ -1,53 +1,34 @@
 package com.revature.models;
 
-public class Customer {
+public class Customer  {
 	
-	private String name;
-	private String username;
-	private String password;
-	private int id;
-	
-	
-	
-	public Customer() {
-		
-		
-	}
-	
-	public Customer(String name, String username, String password, int id) {
-		
-		this.name = name;
-		this.username = username;
-		this.password = password;
-	}
+	private String CustomerId;
+	private String customerUsername;
+	private String customerPassword;
 	
 	
 	
 	
-	public String getName() {
-		return name;
+	
+	public String getCustomerId() {
+		return CustomerId;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setCustomerId(String customerId) {
+		CustomerId = customerId;
 	}
-	public String getUsername() {
-		return username;
+	public String getCustomerUsername() {
+		return customerUsername;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setCustomerUsername(String customerUsername) {
+		this.customerUsername = customerUsername;
 	}
-	public String getPassword() {
-		return password;
+	public String getCustomerPassword() {
+		return customerPassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
+	public void setCustomerPassword(String customerPassword) {
+		this.customerPassword = customerPassword;
 	}
 	
 
+	
 }
