@@ -123,7 +123,7 @@ public static void loginScreen() {
 		
 		Scanner input = new Scanner(System.in);
 		
-		System.out.print("Enter customer id to Remove account");
+		System.out.print("Enter customer account number to remove account");
 		
 		String id = input.nextLine();
 		

@@ -1,19 +1,18 @@
-2020-12-15 20:49:05 bank [INFO] Server has Started
-2020-12-15 20:50:09 bank [INFO] Server has Started
-2020-12-15 20:50:34 bank [INFO] sandeep successfully created an account
-2020-12-15 20:51:06 bank [INFO] Opened checking account
-2020-12-15 20:51:10 bank [INFO] Customer has deposited 50000.0 in bank.
-2020-12-15 20:51:35 bank [INFO] Customer has deposited 2000.0 to account 527
-2020-12-15 20:52:17 bank [INFO] Customer has withdrawn 2000.0 from account 527
-2020-12-15 20:53:18 bank [INFO] Customer has logged out
-2020-12-15 20:57:22 bank [INFO] Server has Started
-2020-12-15 20:58:15 bank [INFO] pardeep successfully created an account
-2020-12-15 20:58:18 bank [INFO] Opened saving account
-2020-12-15 20:58:25 bank [INFO] Customer has deposited 100000.0 in bank.
-2020-12-15 20:59:43 bank [INFO] Customer has deposited 2000.0 to account 528
-2020-12-15 21:01:38 bank [INFO] Customer has withdrawn 2000.0 from account 528
-2020-12-15 21:02:00 bank [INFO] Server has Started
-2020-12-15 21:02:12 bank [INFO] pardeep has logged in
-2020-12-15 21:02:25 bank [INFO] Customer has deposited 2000.0 to account 528
-2020-12-15 21:03:02 bank [INFO] Customer has withdrawn 2000.0 from account 528
-2020-12-15 21:04:01 bank [INFO] Customer has logged out
+2020-12-16 09:48:14 bank [INFO] Server has Started
+2020-12-16 09:49:40 bank [INFO] mohit successfully created an account
+2020-12-16 09:49:54 bank [INFO] Opened checking account
+2020-12-16 09:50:14 bank [INFO] Opened checking account
+2020-12-16 09:50:17 bank [INFO] Customer has deposited 5000.0 in bank.
+2020-12-16 09:58:20 bank [INFO] Customer has deposited 90.0 to account 1301
+2020-12-16 09:59:33 bank [INFO] Customer has withdrawn 90.0 from account 1301
+2020-12-16 10:04:21 bank [INFO] Customer has logged out
+2020-12-16 10:25:31 bank [INFO] Server has Started
+2020-12-16 10:41:11 bank [INFO] Server has Started
+2020-12-16 10:41:17 bank [INFO] Server has Started
+2020-12-16 10:42:16 bank [INFO] rogers successfully created an account
+2020-12-16 10:42:26 bank [INFO] Opened checking account
+2020-12-16 10:42:32 bank [INFO] Customer has deposited 5000.0 in bank.
+2020-12-16 10:43:06 bank [INFO] Customer has deposited 1000.0 to account 587
+2020-12-16 10:43:33 bank [INFO] Customer has withdrawn 1000.0 from account 587
+2020-12-16 10:44:06 bank [INFO] Customer has logged out
+2020-12-16 10:45:18 bank [INFO] Server has Started

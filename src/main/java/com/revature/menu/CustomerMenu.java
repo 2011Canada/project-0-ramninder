@@ -149,10 +149,15 @@ public class CustomerMenu {
 		System.out.println("How much would you like to deposit today?");
 		balance = scan.nextDouble();
 		
+		if(balance <0) {
+			System.out.println("Cannot deposit less than zero!");
+			accountSetup(customer);
+		}else {
+			
 		bc_acc.setBalance(balance);
 		MainLauncher.banking.info("Customer has deposited "+balance+" in bank.");
 
-		
+		}
 		
 		//add info to bank
 		
@@ -352,6 +357,11 @@ public class CustomerMenu {
 		System.out.println("How much would you like to withdraw?");
 		withdrawal = input.nextDouble();
 		//Make sure withdrawal is not greater than the current balance
+			if(withdrawal < 0) {
+			System.out.println("Cannot withdraw less than zero!");
+			logout(id);
+			}
+			else {
 				if (withdrawal > balance) {
 					
 					System.out.println("You do not have sufficient funds to continue!");
@@ -362,6 +372,7 @@ public class CustomerMenu {
 					
 					balance -= withdrawal;
 
+				}
 				}	
 
 				BankAccounts updateUser = new BankAccounts(temp.getAccountTypeId(), temp.getAccountOwner(), balance);
@@ -397,6 +408,10 @@ public class CustomerMenu {
 				
 				System.out.println("How much would you like to Transfer?");
 				sendMoney = input.nextDouble();
+				if(sendMoney < 0) {
+					System.out.println("Cannot send less than zero!");
+					transferMoney(id);
+				}
 				
 				//Second account
 				System.out.println("Select account Number to Transfer to?");
@@ -413,7 +428,7 @@ public class CustomerMenu {
 				
 				secondAccountBalance = temp1.getBalance();
 
-				
+								
 				
 				if (sendMoney > balance) {
 					
@@ -433,7 +448,8 @@ public class CustomerMenu {
 					bankService.updateBankAcc(updateUser1);
 					Customer c = service.findCustomer(temp1.getAccountOwner());
 					
-					System.out.println("You have successfully transfered money to "+c.getCustomerUsername());
+					System.out.println("You have successfully transfered "+"$"+sendMoney+" money to "+c.getCustomerUsername());
+					//MainLauncher.banking.info("You have successfully transfered "+"$"+sendMoney+" money to "+c.getCustomerUsername());
 					System.out.println("Your current balance is: " + updateUser.getBalance());
 						
 					logout(id);	
