@@ -16,7 +16,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	
 	private ConnectionFactory cf = ConnectionFactory.getConnectionFactory();
 
-	@Override
 	public Employee addNewEmployee(Employee obj) {
 		
 		try {
@@ -45,7 +44,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			return obj;
 	}
 
-	@Override
 	public List<Employee> findAllEmployee() {
 		List<Employee> cust = new ArrayList<>();
 		

@@ -17,7 +17,6 @@ public class BankAccountsDAOImpl implements BankAccountDAO {
 	private ConnectionFactory cf = ConnectionFactory.getConnectionFactory();
 
 
-	@Override
 	public BankAccounts save(BankAccounts obj) {
 		// TODO -generated method stub
 		try {
@@ -50,7 +49,6 @@ public class BankAccountsDAOImpl implements BankAccountDAO {
 	}
 
 
-	@Override
 	public BankAccounts findById(String id) {
 		
 		BankAccounts  bk = null;
@@ -81,7 +79,6 @@ public class BankAccountsDAOImpl implements BankAccountDAO {
 	}
 
 
-	@Override
 	public BankAccounts update(BankAccounts obj) {
 		try {
 			Connection conn = cf.getConnection();
@@ -103,7 +100,6 @@ public class BankAccountsDAOImpl implements BankAccountDAO {
 	}
 
 
-	@Override
 	public List<BankAccounts> findAll() {
 		List<BankAccounts> bank_acc = new ArrayList<BankAccounts>();
 		
@@ -135,17 +131,21 @@ public class BankAccountsDAOImpl implements BankAccountDAO {
 	}
 
 
-	@Override
-	public BankAccounts delete(String id) {
+	public String delete(String id) {
 		
 		try {
 			Connection conn = cf.getConnection();
-			String sql = 
+			String sql = "delete  from \"BK_ACCOUNTS\" where \"ACC_OWNER\" = ? ;\n"
+					+ "";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, id);
 			
+			ps.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return "Account sucessfully deleted";
 	}
 	
 	

@@ -115,7 +115,25 @@ public class UserDAOImpl implements UserDAO {
 		
 		
 
+		@Override
+		public String delete(String id) {
+			
+			try {
+				Connection conn = cf.getConnection();
+				String sql = "delete  from \"Customer\" where \"id\" = ? ;\n"
+						+ "";
+				PreparedStatement ps = conn.prepareStatement(sql);
 
+				ps.setString(1, id);
+				
+				ps.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "Account sucessfully deleted";
+		}
+		
+		
 
 		
 	

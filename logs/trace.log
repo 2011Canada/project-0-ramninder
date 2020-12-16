@@ -1,0 +1,19 @@
+2020-12-15 20:49:05 bank [INFO] Server has Started
+2020-12-15 20:50:09 bank [INFO] Server has Started
+2020-12-15 20:50:34 bank [INFO] sandeep successfully created an account
+2020-12-15 20:51:06 bank [INFO] Opened checking account
+2020-12-15 20:51:10 bank [INFO] Customer has deposited 50000.0 in bank.
+2020-12-15 20:51:35 bank [INFO] Customer has deposited 2000.0 to account 527
+2020-12-15 20:52:17 bank [INFO] Customer has withdrawn 2000.0 from account 527
+2020-12-15 20:53:18 bank [INFO] Customer has logged out
+2020-12-15 20:57:22 bank [INFO] Server has Started
+2020-12-15 20:58:15 bank [INFO] pardeep successfully created an account
+2020-12-15 20:58:18 bank [INFO] Opened saving account
+2020-12-15 20:58:25 bank [INFO] Customer has deposited 100000.0 in bank.
+2020-12-15 20:59:43 bank [INFO] Customer has deposited 2000.0 to account 528
+2020-12-15 21:01:38 bank [INFO] Customer has withdrawn 2000.0 from account 528
+2020-12-15 21:02:00 bank [INFO] Server has Started
+2020-12-15 21:02:12 bank [INFO] pardeep has logged in
+2020-12-15 21:02:25 bank [INFO] Customer has deposited 2000.0 to account 528
+2020-12-15 21:03:02 bank [INFO] Customer has withdrawn 2000.0 from account 528
+2020-12-15 21:04:01 bank [INFO] Customer has logged out

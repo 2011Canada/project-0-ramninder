@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.revature.launcher.MainLauncher;
 import com.revature.models.BankAccounts;
 import com.revature.models.Customer;
 import com.revature.models.Employee;
 import com.revature.repositories.EmployeeDAO;
 import com.revature.repositories.EmployeeDAOImpl;
+import com.revature.repositories.UserDAO;
+import com.revature.repositories.UserDAOImpl;
 import com.revature.service.EmployeeSrevice;
 import com.revature.service.ServiceToCustomer;
 import com.revature.service.ServiceToCustomerImpl;
@@ -77,7 +80,7 @@ public static void loginScreen() {
 		System.out.println("See all Customers account");
 		
 		List<BankAccounts> bk_Acc = serviceEmp.findAllBankAcc();
-		
+		UserDAO user = new UserDAOImpl();
 
 		for(BankAccounts bc : bk_Acc) {
 			
@@ -85,24 +88,65 @@ public static void loginScreen() {
 			int accountTypeId = bc.getAccountTypeId();
 			String accountOwner = bc.getAccountOwner();
 			double balance = bc.getBalance();
+			Customer c = user.findCustomerById(accountOwner);
+			System.out.println("**********************");
 			System.out.println("id = "+id);
+			System.out.println("Customer name = "+c.getCustomerUsername());
 			System.out.println("Account Type = "+accountTypeId);
-			System.out.println("Account Owner = "+ accountOwner);
+			System.out.println("Account number = "+ accountOwner);
 			System.out.println("Balance  = "+balance);
-			logout(id);
+			System.out.println();
 		}
-			
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Would you like to: "
+				+ "\n 1. Remove customer account"
+				+"\n 2. Press any key forLogout.");
+		
+		int choice = scan.nextInt();
+		
+		switch(choice) {
+		
+		case 1:
+			delete();
+			break;
+		default:
+			logout();
+			break;
+		
+		}
 
 	}
 	
 	//Delete customer account
-	
 	public static void delete() {
 		
 		Scanner input = new Scanner(System.in);
 		
+		System.out.print("Enter customer id to Remove account");
+		
 		String id = input.nextLine();
 		
+		serviceEmp.deleteAccount(id);
+		serviceEmp.deleteAccount1(id);
+		System.out.println("You have removed the account of a customer");
+		System.out.println();
+		System.out.println("Would you like to: "
+				+ "\n 1. Go back to Customers accounts."
+				+ "\n 2. Press any number for Logout");
+		int choice = input.nextInt();
+		
+		
+		switch(choice) {
+		
+		case 1:
+			seeAllcustomer();
+			break;
+		default:
+			logout();	
+			break;
+		
+		}
 		
 		
 	}
@@ -110,7 +154,7 @@ public static void loginScreen() {
 	
 	
 	//Logout Menu
-		public static void logout(String id) {
+		public static void logout() {
 
 			Scanner input = new Scanner(System.in);
 			
@@ -137,7 +181,7 @@ public static void loginScreen() {
 					System.out.println("");
 					System.out.println("");
 					System.out.println("");
-					System.exit(0);
+					MainLauncher.start();
 					break;
 				
 				case 2:

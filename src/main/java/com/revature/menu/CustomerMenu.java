@@ -3,6 +3,7 @@ package com.revature.menu;
 import java.util.List;
 import java.util.Scanner;
 
+import com.revature.launcher.MainLauncher;
 import com.revature.models.AccountTypes;
 import com.revature.models.BankAccounts;
 import com.revature.models.Customer;
@@ -81,7 +82,7 @@ public class CustomerMenu {
 		List<Customer> customer = service.findAllCustomer();
 		boolean checkUser = false;
 		for(Customer c : customer) {
-			if(c.getCustomerUsername().equals(username) && c.getCustomerPassword().equals(password)) {
+			if(c.getCustomerUsername().equals(username) && c.getCustomerPassword().equals(password) && c.getCustomerId().toString().equals(customerId)) {
 				checkUser = true;
 				System.out.println("Username already exists. Please try again.");
 				createAccount();
@@ -93,6 +94,7 @@ public class CustomerMenu {
 				if(!checkUser) {
 			service.addNewCustomer(customerId, username, password);
 			System.out.println("Congratulations you have created new account");
+			MainLauncher.banking.info(username+" successfully created an account");
 			Customer cus = new Customer();
 			cus.setCustomerId(customerId);
 			cus.setCustomerUsername(username);
@@ -127,11 +129,13 @@ public class CustomerMenu {
 		
 		case 1:
 			accountTypes = "Checking";
+			MainLauncher.banking.info("Opened checking account");
 			bc_acc.setAccountTypeId(1);
 			break;
 			
 		case 2:
 			accountTypes = "Saving";
+			MainLauncher.banking.info("Opened saving account");
 			bc_acc.setAccountTypeId(2);
 			break;
 			
@@ -146,7 +150,8 @@ public class CustomerMenu {
 		balance = scan.nextDouble();
 		
 		bc_acc.setBalance(balance);
-		
+		MainLauncher.banking.info("Customer has deposited "+balance+" in bank.");
+
 		
 		
 		//add info to bank
@@ -191,7 +196,6 @@ public class CustomerMenu {
 	
 	//Welcome Back Screen
 	public static void  welcomeBack(String id) {
-		System.out.println("Welcome Back");
 		int choice;
 		
 		Scanner input = new Scanner(System.in);
@@ -204,7 +208,8 @@ public class CustomerMenu {
 				+ "\n Would you like to"
 				+ "\n 1. Make a deposit"
 				+ "\n 2. Make a withdrawal"
-				+ "\n 3. Logout");
+				+ "\n 3. Send money"
+				+ "\n 4. Logout");
 		
 		choice = input.nextInt();
 		
@@ -216,7 +221,11 @@ public class CustomerMenu {
 		case 2:
 			withdraw(id);
 			break;
+			
 		case 3:
+			transferMoney(id);
+			break;
+		case 4:
 			logout(id);
 			break;
 		default:
@@ -268,6 +277,8 @@ public class CustomerMenu {
 			if(c.getCustomerUsername().equals(username) && c.getCustomerPassword().equals(password)) {
 				checkUser = true;
 				System.out.println("You have successfully logged in");
+				MainLauncher.banking.info(c.getCustomerUsername()+" has logged in");
+
 				welcomeBack(c.getCustomerId());
 				break;
 			}
@@ -295,7 +306,7 @@ public class CustomerMenu {
 			temp = bankService.findBankAcc(id);
 			
 			balance = temp.getBalance();
-			System.out.println(balance);
+			System.out.println("Your current balance is "+balance);
 			System.out.println("How much would you like to deposit?");
 			deposit = input.nextDouble();
 			
@@ -310,6 +321,7 @@ public class CustomerMenu {
 			BankAccounts updateUser = new BankAccounts(temp.getAccountTypeId(),temp.getAccountOwner(), balance);
 			
 			bankService.updateBankAcc(updateUser);
+			MainLauncher.banking.info("Customer has deposited "+ deposit+" to account "+temp.getAccountOwner());
 			System.out.println("Your current balance is: " + updateUser.getBalance());
 			
 			logout(id);		
@@ -335,9 +347,9 @@ public class CustomerMenu {
 		temp = bankService.findBankAcc(id);
 		
 		balance = temp.getBalance();
-		
+		System.out.println("Your current balance is "+balance);
+
 		System.out.println("How much would you like to withdraw?");
-		
 		withdrawal = input.nextDouble();
 		//Make sure withdrawal is not greater than the current balance
 				if (withdrawal > balance) {
@@ -349,16 +361,85 @@ public class CustomerMenu {
 				else {
 					
 					balance -= withdrawal;
-					
+
 				}	
 
 				BankAccounts updateUser = new BankAccounts(temp.getAccountTypeId(), temp.getAccountOwner(), balance);
+				MainLauncher.banking.info("Customer has withdrawn "+ withdrawal+" from account "+temp.getAccountOwner() );
 
 				bankService.updateBankAcc(updateUser);
 				
 				System.out.println("Your current balance is: " + updateUser.getBalance());
 					
 				logout(id);		
+		
+	}
+	
+	
+	public static void transferMoney(String id) {
+		
+		double balance = 0;
+		double sendMoney = 0;
+		
+		//Create a temporary account to grab current user info
+				BankAccounts temp = null;
+				BankAccounts temp1 = null;
+
+				
+				Scanner input = new Scanner(System.in);
+				
+				//find account associated with id
+				temp = bankService.findBankAcc(id);
+				
+				balance = temp.getBalance();
+				System.out.println("Your current balance is "+ balance);
+
+				
+				System.out.println("How much would you like to Transfer?");
+				sendMoney = input.nextDouble();
+				
+				//Second account
+				System.out.println("Select account Number to Transfer to?");
+				input.nextLine();
+				String accountNumber = input.nextLine();
+				
+				
+				double secondAccountBalance = 0;
+
+
+					
+				//find account associated with id
+				temp1 = bankService.findBankAcc(accountNumber);
+				
+				secondAccountBalance = temp1.getBalance();
+
+				
+				
+				if (sendMoney > balance) {
+					
+					System.out.println("You do not have sufficient funds to continue!");
+					logout(id);
+					
+				}else {
+					balance -= sendMoney;
+					
+					
+					BankAccounts updateUser = new BankAccounts(temp.getAccountTypeId(), temp.getAccountOwner(), balance);
+					bankService.updateBankAcc(updateUser);
+					
+					
+					secondAccountBalance += sendMoney;
+					BankAccounts updateUser1 = new BankAccounts(temp1.getAccountTypeId(), temp1.getAccountOwner(), secondAccountBalance);
+					bankService.updateBankAcc(updateUser1);
+					Customer c = service.findCustomer(temp1.getAccountOwner());
+					
+					System.out.println("You have successfully transfered money to "+c.getCustomerUsername());
+					System.out.println("Your current balance is: " + updateUser.getBalance());
+						
+					logout(id);	
+					
+				}
+		
 		
 	}
 	
@@ -385,6 +466,8 @@ public class CustomerMenu {
 		
 			case 1:
 				System.out.println("Goodbye.");
+				MainLauncher.banking.info("Customer has logged out");
+
 				//Clear the console
 				System.out.println("");
 				System.out.println("");
@@ -395,7 +478,7 @@ public class CustomerMenu {
 				System.out.println("");
 				System.out.println("");
 				System.out.println("");
-				System.exit(0);
+				MainLauncher.start();
 				break;
 			
 			case 2:
@@ -404,6 +487,7 @@ public class CustomerMenu {
 			
 			default:
 				System.out.println("Not a valid choice");
+				logout(id);
 				break;
 		
 		}

@@ -11,4 +11,6 @@ public interface UserDAO {
 	public List<Customer> findAllCustomer();
 	
 	public Customer findCustomerById(String id);
+
+	String delete(String id);
 }

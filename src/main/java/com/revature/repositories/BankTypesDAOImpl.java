@@ -11,7 +11,6 @@ import com.revature.util.ConnectionFactory;
 public class BankTypesDAOImpl implements BankTypesDAO {
 	private ConnectionFactory cf = ConnectionFactory.getConnectionFactory();
 
-	@Override
 	public AccountTypes save(AccountTypes obj) {
 		
 		try {
@@ -26,7 +25,7 @@ public class BankTypesDAOImpl implements BankTypesDAO {
 			
 			int numRows = ps.executeUpdate();
 			
-			System.out.println(obj.getAccountType());
+			//System.out.println(obj.getAccountType());
 			if(numRows > 0) {
 				
 				ResultSet rs = ps.getGeneratedKeys();

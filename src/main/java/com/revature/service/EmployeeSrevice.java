@@ -9,6 +9,8 @@ import com.revature.repositories.BankAccountDAO;
 import com.revature.repositories.BankAccountsDAOImpl;
 import com.revature.repositories.EmployeeDAO;
 import com.revature.repositories.EmployeeDAOImpl;
+import com.revature.repositories.UserDAO;
+import com.revature.repositories.UserDAOImpl;
 
 public class EmployeeSrevice {
 	 Employee employee = new Employee();;
@@ -16,6 +18,8 @@ public class EmployeeSrevice {
 	static  EmployeeDAO empData = new EmployeeDAOImpl();
 	
 	static BankAccountDAO bankAcc = new BankAccountsDAOImpl();
+	
+	static UserDAO user = new UserDAOImpl();
 
 	
 public List<BankAccounts> findAllBankAcc() {
@@ -40,5 +44,11 @@ public List<BankAccounts> findAllBankAcc() {
 		return empData.findAllEmployee();
 	}
 
-
+	public String deleteAccount(String id) {
+			return bankAcc.delete(id);
+	}
+	
+	public String deleteAccount1(String id) {
+		return user.delete(id);
+}
 }

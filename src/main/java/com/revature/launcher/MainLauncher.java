@@ -11,16 +11,22 @@ import com.revature.menu.EmployeeMenu;
 public class MainLauncher {
 	
 	
-	public static Logger banking = LogManager.getLogger("banking.info");
+	public static Logger banking = LogManager.getLogger("com.revature.bank");
+	
 	
 	public static void main(String []args) {
+		
+		
+		//CustomerMenu.createAccount();
+		//CustomerMenu.transferMoney("520");
+		//CustomerMenu.logout("520");
 		
 		banking.info("Server has Started");
 		
 		start();
 		
 		
-			
+
 	}
 	
 	public static void start() {

@@ -15,6 +15,6 @@ public interface BankAccountDAO {
 	
 	public List<BankAccounts> findAll();
 	
-	public BankAccounts delete(String id);
+	public String delete(String id);
 
 }
