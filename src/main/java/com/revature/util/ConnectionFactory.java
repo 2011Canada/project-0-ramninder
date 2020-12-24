@@ -26,8 +26,8 @@ private ConnectionFactory(int numberOfConnections) {
 		String url = "jdbc:postgresql://revaturecanada.cibiqoktknnw.us-east-2.rds.amazonaws.com:5432"
 				+ "/postgres?currentSchema=bank";
 		
-		String user = "postgres";
-		String password = "Gurugobindsinghji";
+		String user = "";
+		String password = "";
 		try {
 			this.conn = new Connection[numberOfConnections];
 			for(int i = 0; i< this.conn.length; i++) {
